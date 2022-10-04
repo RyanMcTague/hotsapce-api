@@ -1,6 +1,18 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  scope :api, defaults: { format: :json } do
+    namespace :v1 do
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+      resources :users, only: :create do
+        collection do
+          patch :update
+          put :update
+          delete :destroy
+        end
+      end
+
+      post 'authorization', to: 'authorization#create'
+      delete 'authorization', to: 'authorization#destroy'
+
+    end
+  end
 end
