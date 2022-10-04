@@ -49,3 +49,5 @@ end
 gem "jwt", "~> 2.5"
 
 gem "hashid-rails", "~> 1.4"
+
+gem "faker", "~> 2.23"
