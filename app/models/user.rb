@@ -27,6 +27,10 @@ class User < ApplicationRecord
     token
   end
 
+  def revoke_auth_token
+    self.update(authorization_token: nil)
+  end
+
   def self.find_by_auth_token(token)
     begin
       data = JWT.decode(token, Rails.configuration.secrets.jwt_secret).first
@@ -42,7 +46,4 @@ class User < ApplicationRecord
     end
   end
 
-  def revoke_auth_token
-    self.update(authorization_token: nil)
-  end
 end
